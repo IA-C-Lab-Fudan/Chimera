@@ -22,7 +22,7 @@ Chimera is published in FPL 2024.
 git clone https://github.com/IA-C-Lab-Fudan/Chimera
 ```
 
-1. Install Verilator (Verilator is installed to support the [gem5+rtl project](https://gitlab.bsc.es/glopez/gem5-rtl), which is also included in the Chimera project)
+2. Install Verilator (Verilator is installed to support the [gem5+rtl project](https://gitlab.bsc.es/glopez/gem5-rtl), which is also included in the Chimera project)
 
 ```bash
 git clone https://github.com/verilator/verilator
@@ -36,13 +36,13 @@ make install
 export VERILATOR_ROOT=<you path to install Verilator>
 ```
 
-1. Generate the bitstream using Vivado
+3. Generate the bitstream using Vivado
 
 You need to select an FPGA board that supports PCIe functionality and build a project using Vivado to generate bitstream from the hardware code we provided and deploy it to the FPGA board. The hardware code is located at **<src/fpga/verilog>**.
 
 After connecting the PCIe interface of the FPGA board to the host, restart Linux and run **lspci** to check whether the FPGA board (which is treated as a PCIe device) is recognized properly. If you find "Memory controller: Xilinx..." is displayed, the identification is successful.
 
-1. Install Xilinx XDMA driver
+4. Install Xilinx XDMA driver
 
 ```bash
 git clone https://github.com/Xilinx/dma_ip_drivers
@@ -56,7 +56,7 @@ cd XDMA/linux-kernel/tests
 
 You can see "DONE" if the driver is successfully loaded.
 
-1. Build the RTL C++ model using Verilator
+5. Build the RTL C++ model using Verilator
 
 ```bash
 cd src/fpga/mpeg2/rtl
@@ -66,7 +66,7 @@ make library_vcd
 make install
 ```
 
-1. Config compilation path for gem5 simulator
+6. Config compilation path for gem5 simulator
 
 ```bash
 # file: Sconstruct, you need fill in the following paths
@@ -76,7 +76,7 @@ main.Append(CPPPATH=[Dir('<path to Chimera project>/src/fpga/mpeg2/rtl/verilator
 main.Prepend(LIBPATH=[Dir('<path to Chimera project>/src/fpga/mpeg2/rtl')])
 ```
 
-1. Compile the Chimera project
+7. Compile the Chimera project
 
 Chimera is based on the gem5 project, and compiling gem5 has the following dependencies:
 
@@ -102,7 +102,7 @@ scons build/ARM/gem5.opt -j 12
 export LD_LIBRARY_PATH=<path to Chimera project>/src/fpga/mpeg2/rtl:$LD_LIBRARY_PATH
 ```
 
-1. Run gem5 with Chimera (example command)
+2. Run gem5 with Chimera (example command)
 
 ```bash
 build/ARM/gem5.opt configs/example/se.py \
@@ -116,7 +116,7 @@ build/ARM/gem5.opt configs/example/se.py \
 --options=<path to Chimera project>/tests/test-progs/phy/288x208.raw <path to Chimera project>/tests/test-progs/phy/288x208.m2v
 ```
 
-1. Configurable parameters that Chimera supports
+3. Configurable parameters that Chimera supports
 
 - **enable-cosim:** whether to enable the co-simulation
   - **enable-chimera:** whether to enable the Chimera (Takes effect only if **enable-cosim** is valid)
