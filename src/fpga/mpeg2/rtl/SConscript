@@ -1,0 +1,14 @@
+# import os
+# Import('main')
+# ## Add VERILATOR PATH
+# main.Append(CPPPATH=[Dir(os.environ['VERILATOR_ROOT'] + '/include')])
+# main.Append(CPPPATH=[Dir(os.environ['VERILATOR_ROOT'] + '/include/vltstd')])
+
+# ## NEEDS to be Modified for every model model_newrtlObject/verilator_output
+# main.Append(CPPPATH=[Dir('.')])
+# main.Append(CPPPATH=[Dir('verilator_mpeg2_vcd')])
+
+# ## Find the library path and add library
+# main.Append(LIBS=['VerilatorMPEG2'])
+# main.Prepend(LIBPATH=Dir('.'))
+# main.Append(CPPDEFINES=['VM_SC=0', 'VM_TRACE=1','VL_THREADED=0'])

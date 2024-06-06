@@ -1,0 +1,7 @@
+Import('*')
+
+SimObject('mpeg2_encoder.py', sim_objects=['Mpeg2Encoder'])
+
+Source('mpeg2_encoder.cc')
+
+DebugFlag('Mpeg2Encoder')

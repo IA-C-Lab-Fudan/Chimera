@@ -1,0 +1,11 @@
+Import('*')
+
+SimObject('Chimera.py', sim_objects=['Chimera'])
+
+Source('chimera.cc')
+Source('fpga_engine.cc')
+Source('utils.cc')
+Source('cdma.cc')
+
+DebugFlag('Chimera')
+DebugFlag('FPGAEngine')
